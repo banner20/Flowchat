@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlowChat - Node-based Conversational Platform</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>FlowChat</h1>
+      <p>Node-based conversational platform with Gemini AI</p>
+    </header>
+
+    <div class="input-section">
+      <form id="prompt-form">
+        <div class="form-group">
+          <label for="prompt-input">Enter your prompt:</label>
+          <textarea id="prompt-input" rows="4" placeholder="Type your prompt here..."></textarea>
+        </div>
+        <button type="submit" id="send-button">Send to AI</button>
+      </form>
+    </div>
+
+    <div class="nodes-section">
+      <h2>Conversation Nodes</h2>
+      <div class="nodes-container" id="nodes-container">
+        <!-- Nodes will be dynamically added here -->
+        <div class="empty-state">
+          No nodes yet. Start by sending a prompt above!
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html> 
