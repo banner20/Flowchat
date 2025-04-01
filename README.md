@@ -1,27 +1,29 @@
 # FlowChat
 
-A node-based conversational platform that integrates with Google's Gemini AI. This MVP allows users to enter prompts that become "nodes" in a conversational flow, with AI-generated responses.
+A node-based conversational platform that integrates with Google's Gemini AI. Create, arrange, and connect conversation nodes on an infinite canvas.
 
 ## Features
 
-- Simple, clean UI for entering prompts and viewing responses
-- Integration with Gemini AI's free tier API
-- Node-based conversation history
-- Responsive design
+- Create nodes with AI-generated responses using Google's Gemini API
+- Infinite canvas with zoom and pan capabilities
+- Drag and arrange conversation nodes freely
+- Connect nodes to form conversation threads
+- Copy, paste, and duplicate nodes
+- Beautiful, responsive user interface
 
 ## Setup
 
 ### Prerequisites
 
-- Node.js (v14 or newer)
-- A Gemini API key (free tier)
+- Node.js (v14 or above)
+- A Gemini API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
 
 ### Installation
 
-1. Clone this repository:
+1. Clone the repository:
    ```
-   git clone <repository-url>
-   cd mvp-project
+   git clone https://github.com/yourusername/flowchat.git
+   cd flowchat
    ```
 
 2. Install dependencies:
@@ -29,59 +31,55 @@ A node-based conversational platform that integrates with Google's Gemini AI. Th
    npm install
    ```
 
-3. Create a `.env` file in the root directory with the following content:
+3. Set up your environment:
+   - Copy the `.env.example` file to `.env`
+   - Add your Gemini API key to the `.env` file:
+     ```
+     GEMINI_API_KEY=your_api_key_here
+     ```
+
+4. Start the server:
    ```
-   PORT=3000
-   GEMINI_API_KEY=your_gemini_api_key_here
-   GEMINI_API_URL=https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent
+   npm start
    ```
 
-4. Replace `your_gemini_api_key_here` with your actual Gemini API key.
+5. Open your browser and go to:
+   ```
+   http://localhost:3000
+   ```
 
-### Running the Application
+## Usage
 
-Start the server:
-```
-npm start
-```
+1. **Create a node**:
+   - Enter a prompt in the sidebar and click "Create Node" or
+   - Click the "+" button in the canvas controls and enter a prompt in the modal
 
-For development with auto-restart:
+2. **Move nodes**: Click and drag the title area of any node to move it around the canvas
+
+3. **Connect nodes**: Drag from one node's connection point to another node's connection point
+
+4. **Edit canvas view**:
+   - Drag the canvas background to pan
+   - Use the mouse wheel or zoom buttons to zoom in/out
+   - Use the center view button to see all nodes
+   - Use the reset view button to return to the default view
+
+5. **Copy and duplicate nodes**:
+   - Select a node and press Ctrl+C to copy, Ctrl+V to paste
+   - Double-click a node to instantly duplicate it
+
+## Development
+
+For development with hot reloading:
 ```
 npm run dev
 ```
 
-The application will be accessible at http://localhost:3000
+## Technologies
 
-## Usage
-
-1. Enter a prompt in the text area
-2. Click "Send to AI" to submit the prompt
-3. A new node will appear showing your prompt
-4. Once the AI responds, the node will update with the response
-5. Continue adding new prompts to build your conversational flow
-
-## Project Structure
-
-```
-/mvp-project
-  ├── server.js         // Express server with Gemini API integration
-  ├── package.json      // Project dependencies and scripts
-  ├── .env              // Environment variables (API keys)
-  ├── public/           // Static files served by Express
-  │    ├── index.html   // Main HTML interface
-  │    ├── style.css    // CSS styling
-  │    └── app.js       // Client-side JavaScript
-  └── README.md         // This documentation file
-```
-
-## Future Enhancements
-
-- Visual mind map display for nodes
-- Node linking capabilities
-- User authentication
-- Saving and loading conversations
-- Custom styling options for nodes
-- Different AI model options
+- Frontend: HTML, CSS, JavaScript (Vanilla)
+- Backend: Node.js, Express
+- AI: Google Gemini API
 
 ## License
 

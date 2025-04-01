@@ -3,37 +3,93 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FlowChat - Node-based Conversational Platform</title>
+  <title>FlowChat - Node-based Conversations with AI</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
     <header>
       <h1>FlowChat</h1>
-      <p>Node-based conversational platform with Gemini AI</p>
+      <p>Create a network of connected conversations with AI</p>
     </header>
-
-    <div class="input-section">
-      <form id="prompt-form">
-        <div class="form-group">
-          <label for="prompt-input">Enter your prompt:</label>
-          <textarea id="prompt-input" rows="4" placeholder="Type your prompt here..."></textarea>
-        </div>
-        <button type="submit" id="send-button">Send to AI</button>
-      </form>
+    
+    <div class="sidebar">
+      <div class="input-section">
+        <form id="prompt-form">
+          <div class="form-group">
+            <label for="prompt-input">Enter your prompt:</label>
+            <textarea id="prompt-input" rows="3" placeholder="Type your prompt here..."></textarea>
+          </div>
+          <button type="submit" id="send-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+            Create Node
+          </button>
+        </form>
+      </div>
+      
+      <div class="node-list-section">
+        <h3>Conversation Nodes</h3>
+        <div id="node-list"></div>
+      </div>
     </div>
-
-    <div class="nodes-section">
-      <h2>Conversation Nodes</h2>
-      <div class="nodes-container" id="nodes-container">
-        <!-- Nodes will be dynamically added here -->
-        <div class="empty-state">
-          No nodes yet. Start by sending a prompt above!
-        </div>
+    
+    <div class="canvas-container">
+      <div class="canvas-controls">
+        <button id="center-view" title="Center View">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="22" y1="12" x2="18" y2="12"></line>
+            <line x1="6" y1="12" x2="2" y2="12"></line>
+            <line x1="12" y1="6" x2="12" y2="2"></line>
+            <line x1="12" y1="22" x2="12" y2="18"></line>
+          </svg>
+        </button>
+        <button id="reset-view" title="Reset View">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+          </svg>
+        </button>
+        <button id="zoom-in" title="Zoom In">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            <line x1="11" y1="8" x2="11" y2="14"></line>
+            <line x1="8" y1="11" x2="14" y2="11"></line>
+          </svg>
+        </button>
+        <button id="zoom-out" title="Zoom Out">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            <line x1="8" y1="11" x2="14" y2="11"></line>
+          </svg>
+        </button>
+        <button id="new-node" title="Create New Node">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="12" y1="8" x2="12" y2="16"></line>
+            <line x1="8" y1="12" x2="16" y2="12"></line>
+          </svg>
+        </button>
+      </div>
+      <div id="canvas" class="canvas"></div>
+      <div id="connections-layer" class="connections-layer"></div>
+    </div>
+    
+    <!-- Modal for creating nodes -->
+    <div id="node-create-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3>Create New Node</h3>
+        <textarea id="modal-prompt-input" rows="4" placeholder="Enter your prompt..."></textarea>
+        <button id="modal-create-node">Create Node</button>
       </div>
     </div>
   </div>
-
+  
   <script src="app.js"></script>
 </body>
 </html> 
